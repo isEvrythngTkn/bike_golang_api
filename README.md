@@ -10,3 +10,4 @@ Install dependencies:
 To start the server:
 `go run client.go response.go contract.go`
 
+* A lot of the code for this is based off https://goethereumbook.org/
