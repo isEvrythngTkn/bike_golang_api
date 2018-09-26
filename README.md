@@ -6,7 +6,7 @@ This is an API designed to interact with the Solidity contracts built for the Bi
 - github.com/ethereum/go-ethereum/ethclient
 - github.com/gin-gonic/gin
 
-You'll need this repo too: https://github.com/isEvrythngTkn/bike-challenge
+You'll need this repo too: https://github.com/isEvrythngTkn/bike-challenge \
 And you'll need to migrate those contracts onto your local Ethereum blockchain (ganache) and ensure that you have the addresses to those contracts.
 
 ## Instructions
