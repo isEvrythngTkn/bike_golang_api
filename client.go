@@ -10,6 +10,7 @@ import (
     "math/big"
     "crypto/ecdsa"
 
+    "github.com/ethereum/go-ethereum/accounts/abi/bind"
     "github.com/ethereum/go-ethereum/core/types"
     "github.com/ethereum/go-ethereum/crypto"
     "github.com/ethereum/go-ethereum/ethclient"
@@ -69,8 +70,20 @@ func main() {
         successResponseString("name", name, c)
     })
 
-    r.POST("/purchaseTokens/:crowdsaleAddress/:privateKey", func(c *gin.Context) {
-        address := c.Param("address")
+    r.GET("/viewBalance/:tokenContractAddress/:accountAddress", func(c *gin.Context) {
+        accountAddressString := c.Param("accountAddress")
+        accountAddress := getAddress(accountAddressString)
+
+        tokenContractAddress := c.Param("tokenContractAddress")
+        instance := getBikeCoinContractInstance(tokenContractAddress, client)
+        
+        balance, err := instance.BalanceOf(&bind.CallOpts{}, accountAddress)
+        errorResponse(err, c)
+        successResponseBigInt("balance", balance, c)
+    });
+
+    r.POST("/purchaseTokens/:crowdSaleAddress/:privateKey", func(c *gin.Context) {
+        crowdSaleAddress := c.Param("crowdSaleAddress")
         privateKeyHex := c.Param("privateKey")
         if strings.HasPrefix(privateKeyHex, "0x") {
             a := []rune(privateKeyHex)
@@ -100,14 +113,14 @@ func main() {
         }
 
         value := big.NewInt(1000000000000000000) // in wei (1 eth)
-        gasLimit := uint64(21000)                // in units
+        gasLimit := uint64(3000000)
         gasPrice, err := client.SuggestGasPrice(context.Background())
         if err != nil {
             log.Fatal(err)
         }
 
         var data []byte
-        toAddress := getAddress(address)
+        toAddress := getAddress(crowdSaleAddress)
         tx := types.NewTransaction(nonce, toAddress, value, gasLimit, gasPrice, data)
 
         chainID, err := client.NetworkID(context.Background())
