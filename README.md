@@ -19,17 +19,17 @@ To start the server:
 
 ## Routes
 
-Bike Rental Contract
-`/rentalFee/[address]`
+Bike Rental Contract\
+`/rentalFee/[address]`\
 `/rentalTimeInMinutes/[address]`
 
-Bike Coin Contract
-`/symbol/[tokenContractAddress]`
-`/decimals/[tokenContractAddress]`
-`/name/[tokenContractAddress]`
+Bike Coin Contract\
+`/symbol/[tokenContractAddres]`\
+`/decimals/[tokenContractAddress]`\
+`/name/[tokenContractAddress]`\
 `/viewBalance/[tokenContractAddress]/[accountAddress]`
 
-Crowdsale Contract
+Crowdsale Contract\
 `/purchaseTokens/[crowdSaleAddress]/[privateKey]`
 
 The server runs on port 8080 by default. An example url is:
