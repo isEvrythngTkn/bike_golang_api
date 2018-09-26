@@ -1,11 +1,15 @@
-# bike_golang_api
+# Bike Contract API
 
-## Requires: 
+This is an API designed to interact with the Solidity contracts built for the Bike Challenge.
+
+## Requirements: 
 - github.com/ethereum/go-ethereum/ethclient
 - github.com/gin-gonic/gin
 
 You'll need this repo too: https://github.com/isEvrythngTkn/bike-challenge
 And you'll need to migrate those contracts onto your local Ethereum blockchain (ganache) and ensure that you have the addresses to those contracts.
+
+## Instructions
 
 Install dependencies: 
 `go get github.com/ethereum/go-ethereum/ethclient && go get github.com/gin-gonic/gin`
@@ -13,7 +17,7 @@ Install dependencies:
 To start the server:
 `go run client.go response.go contract.go`
 
-There are a number of endpoints:
+## Routes
 
 Bike Rental Contract
 `/rentalFee/[address]`
